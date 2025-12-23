@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using EcommerceBackend.Models;
 
 namespace EcommerceBackend
 {
@@ -6,36 +8,26 @@ namespace EcommerceBackend
     {
         static void Main(string[] args)
         {
-            // Welcome message
-            Console.WriteLine("Welcome to the E-Commerce Backend Demo - Day 1");
-
-            // Product information
-            // Product name
-            string productName = "Laptop";
-
-            // Product price in decimal
-            decimal productPrice = 999.99M;
-
-            // Product quantity
-            int productQuantity = 2;
-
-            // Calculate total price
-            decimal totalPrice = CalculateTotal(productPrice, productQuantity);
-
-            // Display product details
-            Console.WriteLine($"Product: {productName}");
-            Console.WriteLine($"Price: {productPrice} USD");
-            Console.WriteLine($"Quantity: {productQuantity}");
-            Console.WriteLine($"Total Price: {totalPrice} USD");
-
-            // Extra exercise: check if quantity is even or odd
-            if (productQuantity % 2 == 0)
+            // Create a list of products
+            List<Product> products = new List<Product>
             {
-                Console.WriteLine("Quantity is even.");
-            }
-            else
+                new Product(1, "Laptop", 1200, 5, "Electronics"),
+                new Product(2, "Mouse", 25, 0, "Accessories"),
+                new Product(3, "Keyboard", 70, 10, "Accessories")
+            };
+
+            // Loop through products 
+            foreach (var product in products)
             {
-                Console.WriteLine("Quantity is odd.");
+                // Check stock status
+                if (product.Stock > 0)
+                {
+                    Console.WriteLine($"{product.Name} is in stock.");
+                }
+                else
+                {
+                    Console.WriteLine($"{product.Name} is out of stock.");
+                }
             }
         }
 
